@@ -34,6 +34,7 @@ Partial Class frmVehiculos
         Me.lstVehiculos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lstVehiculos.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader24, Me.ColumnHeader25})
         Me.lstVehiculos.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lstVehiculos.FullRowSelect = True
         Me.lstVehiculos.GridLines = True
         Me.lstVehiculos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
         Me.lstVehiculos.HideSelection = False

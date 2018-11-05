@@ -10,6 +10,7 @@ Public Class frmVehiculos
         Me.ShowDialog()
 
         lstVehiculos.Focus()
+        SendKeys.Send("{LEFT}")
         SendKeys.Send("{DOWN}")
 
     End Sub
