@@ -26,13 +26,14 @@ Partial Class frmVehiculos
         Me.ColumnHeader24 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader25 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Label20 = New System.Windows.Forms.Label()
+        Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.SuspendLayout()
         '
         'lstVehiculos
         '
         Me.lstVehiculos.BackColor = System.Drawing.SystemColors.HighlightText
         Me.lstVehiculos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lstVehiculos.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader24, Me.ColumnHeader25})
+        Me.lstVehiculos.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader24, Me.ColumnHeader25})
         Me.lstVehiculos.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lstVehiculos.FullRowSelect = True
         Me.lstVehiculos.GridLines = True
@@ -68,6 +69,11 @@ Partial Class frmVehiculos
         Me.Label20.Text = "INTRO - SELECCIONAR VEHICULO            ESC - SALIR"
         Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'ColumnHeader1
+        '
+        Me.ColumnHeader1.Text = "id"
+        Me.ColumnHeader1.Width = 0
+        '
         'frmVehiculos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -95,4 +101,5 @@ Partial Class frmVehiculos
     Friend WithEvents ColumnHeader24 As ColumnHeader
     Friend WithEvents ColumnHeader25 As ColumnHeader
     Friend WithEvents Label20 As Label
+    Friend WithEvents ColumnHeader1 As ColumnHeader
 End Class
