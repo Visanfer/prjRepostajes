@@ -37,7 +37,7 @@ Public Class frmRespotajes
         grdLineas.Rows = 1
 
         grdLineas.DisplayRowNumber = False
-        grdLineas.Cols = 9
+        grdLineas.Cols = 10
 
         'grdLineas.EnterKeyMoveTo = FlexCell.Grid.MoveToEnum.NextRow
         grdLineas.SelectionMode = FlexCell.Grid.SelectionModeEnum.ByRow
@@ -62,9 +62,11 @@ Public Class frmRespotajes
         grdLineas.Cell(0, 6).Text = "LLENO"
         grdLineas.Cell(0, 7).Text = "GASOLINERO"
         grdLineas.Cell(0, 8).Text = "DESCRIPCION"
+        grdLineas.Cell(0, 9).Text = "id matricula"
 
         grdLineas.Column(0).Visible = False
         grdLineas.Column(1).Visible = False
+        grdLineas.Column(9).Visible = False
 
         grdLineas.Column(0).Width = 0
         grdLineas.Column(1).Width = 30
@@ -74,7 +76,8 @@ Public Class frmRespotajes
         grdLineas.Column(5).Width = 60
         grdLineas.Column(6).Width = 50
         grdLineas.Column(7).Width = 200
-        grdLineas.Column(8).Width = 100
+        grdLineas.Column(8).Width = 200
+        grdLineas.Column(9).Width = 0
 
         grdLineas.Column(0).Alignment = FlexCell.Grid.AlignmentEnum.RightCenter
         grdLineas.Column(1).Alignment = FlexCell.Grid.AlignmentEnum.RightCenter
@@ -85,6 +88,7 @@ Public Class frmRespotajes
         grdLineas.Column(6).Alignment = FlexCell.Grid.AlignmentEnum.CenterCenter
         grdLineas.Column(7).Alignment = FlexCell.Grid.AlignmentEnum.LeftCenter
         grdLineas.Column(8).Alignment = FlexCell.Grid.AlignmentEnum.LeftCenter
+        grdLineas.Column(9).Alignment = FlexCell.Grid.AlignmentEnum.LeftCenter
 
         grdLineas.Visible = True
 
@@ -274,6 +278,18 @@ Public Class frmRespotajes
         Me.Close()
     End Sub
 
+    Private Sub mrHistorialVehiculo()
+
+        Dim lnIdMatricula As Integer = mfnInt32(grdLineas.Cell(grdLineas.ActiveCell.Row, 9).Text)
+        If lnIdMatricula > 0 Then
+            Dim loHistorico As New frmHistorico
+            loHistorico.mnIdMatricula = lnIdMatricula
+            loHistorico.mrCargar()
+
+        End If
+
+    End Sub
+
     Private Sub mrCargaRepostajes()
 
         moBusRepostajes = New clsBusRepostajes
@@ -300,6 +316,7 @@ Public Class frmRespotajes
             grdLineas.Cell(lnLinea, 5).Text = Format(loRow("litros"), "0.00")
             grdLineas.Cell(lnLinea, 7).Text = loRow("nom") & ""
             grdLineas.Cell(lnLinea, 8).Text = loRow("descripcion") & ""
+            grdLineas.Cell(lnLinea, 9).Text = If(IsDBNull(loRow("idmatricula")), 0, loRow("idmatricula"))
 
             If loRow("id_repostaje") = 0 Then
 
@@ -323,6 +340,17 @@ Public Class frmRespotajes
                     grdLineas.Cell(lnLinea, 6).Text = "NO"
                 End If
             End If
+
+            If loRow("matricula") = "0002VIS" Then
+                grdLineas.Cell(lnLinea, 2).BackColor = Color.LightPink
+                grdLineas.Cell(lnLinea, 3).BackColor = Color.LightPink
+                grdLineas.Cell(lnLinea, 4).BackColor = Color.LightPink
+                grdLineas.Cell(lnLinea, 5).BackColor = Color.LightPink
+                grdLineas.Cell(lnLinea, 6).BackColor = Color.LightPink
+                grdLineas.Cell(lnLinea, 7).BackColor = Color.LightPink
+                grdLineas.Cell(lnLinea, 8).BackColor = Color.LightPink
+            End If
+
 
         Next
 
@@ -495,6 +523,10 @@ Public Class frmRespotajes
         Dim loConsumos As New frmConsumos
         loConsumos.mnEmpresa = mnEmpresa
         loConsumos.mrCargar()
+    End Sub
+
+    Private Sub cmdHistorial_Click(sender As Object, e As EventArgs) Handles cmdHistorial.Click
+        mrHistorialVehiculo
     End Sub
 
 End Class

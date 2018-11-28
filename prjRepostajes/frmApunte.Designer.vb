@@ -28,6 +28,7 @@ Partial Class frmApunte
         Me.txtLitros = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label2
@@ -45,7 +46,7 @@ Partial Class frmApunte
         'txtMatricula
         '
         Me.txtMatricula.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtMatricula.Location = New System.Drawing.Point(107, 35)
+        Me.txtMatricula.Location = New System.Drawing.Point(107, 47)
         Me.txtMatricula.MaxLength = 30
         Me.txtMatricula.Name = "txtMatricula"
         Me.txtMatricula.Size = New System.Drawing.Size(130, 20)
@@ -54,7 +55,7 @@ Partial Class frmApunte
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(20, 38)
+        Me.Label5.Location = New System.Drawing.Point(20, 50)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(72, 13)
         Me.Label5.TabIndex = 169
@@ -63,7 +64,7 @@ Partial Class frmApunte
         'txtLitros
         '
         Me.txtLitros.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtLitros.Location = New System.Drawing.Point(107, 79)
+        Me.txtLitros.Location = New System.Drawing.Point(107, 91)
         Me.txtLitros.MaxLength = 30
         Me.txtLitros.Name = "txtLitros"
         Me.txtLitros.Size = New System.Drawing.Size(130, 20)
@@ -72,7 +73,7 @@ Partial Class frmApunte
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(20, 82)
+        Me.Label3.Location = New System.Drawing.Point(20, 94)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(49, 13)
         Me.Label3.TabIndex = 171
@@ -83,12 +84,24 @@ Partial Class frmApunte
         Me.Label1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(256, 35)
+        Me.Label1.Location = New System.Drawing.Point(256, 47)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(280, 64)
         Me.Label1.TabIndex = 172
         Me.Label1.Text = "* METE UN REPOSTAJE INMEDIATAMENTE ANTERIOR AL APUNTE SELECCIONADO"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label4
+        '
+        Me.Label4.BackColor = System.Drawing.SystemColors.Info
+        Me.Label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(12, 2)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(524, 24)
+        Me.Label4.TabIndex = 173
+        Me.Label4.Text = "F1 - METER LITROS DE LA HOJA"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmApunte
         '
@@ -96,6 +109,7 @@ Partial Class frmApunte
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(548, 175)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtLitros)
         Me.Controls.Add(Me.Label3)
@@ -124,4 +138,5 @@ Partial Class frmApunte
     Friend WithEvents txtLitros As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents Label4 As Label
 End Class

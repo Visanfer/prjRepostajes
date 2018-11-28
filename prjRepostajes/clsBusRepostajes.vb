@@ -15,6 +15,21 @@ Public Class clsBusRepostajes
 
     Public moGrupoDatos As New DataSet
 
+    Public Sub mrRecuperaConsumosMatricula(ByVal lsMatricula As String, ByVal ldDesde As Date, ByVal ldHasta As Date)
+
+        Dim lsSql As String
+
+        lsSql = "select * from repostajes where matricula = '" & lsMatricula &
+            "' and date(fechahora)>='" & Format(ldDesde, formatoFecha) &
+            "' and date(fechahora)<='" & Format(ldHasta, formatoFecha) &
+            "' order by fechahora asc;"
+
+        Dim loDatos As DataTable = New clsControlBD().mfoRecuperaDatos(False, lsSql, "consumos")
+        If moGrupoDatos.Tables.Contains("consumos") Then moGrupoDatos.Tables.Remove("consumos")
+        moGrupoDatos.Tables.Add(loDatos.Copy)
+
+    End Sub
+
     Public Sub mrRecuperaConsumos(ByVal ldDesde As Date, ByVal ldHasta As Date)
 
         Dim lsSql As String
@@ -30,7 +45,6 @@ Public Class clsBusRepostajes
         moGrupoDatos.Tables.Add(loDatos.Copy)
 
     End Sub
-
 
     Public Sub mrRecuperaGasolineros()
 

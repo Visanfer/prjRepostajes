@@ -26,6 +26,7 @@ Partial Class frmRespotajes
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmRespotajes))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.lblContador = New System.Windows.Forms.Label()
         Me.lblTextoContador = New System.Windows.Forms.Label()
         Me.cmdRefresca = New System.Windows.Forms.Button()
@@ -67,7 +68,7 @@ Partial Class frmRespotajes
         Me.lblPrograma = New System.Windows.Forms.Label()
         Me.lblTitulo = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.cmdHistorial = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         Me.grpGasolineros.SuspendLayout()
         Me.grpVehiculos.SuspendLayout()
@@ -101,6 +102,17 @@ Partial Class frmRespotajes
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(774, 647)
         Me.Panel2.TabIndex = 34
+        '
+        'Label4
+        '
+        Me.Label4.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(33, 356)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(171, 21)
+        Me.Label4.TabIndex = 161
+        Me.Label4.Text = "F1 - METER APUNTE"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblContador
         '
@@ -469,6 +481,7 @@ Partial Class frmRespotajes
         '
         Me.Panel1.BackColor = System.Drawing.SystemColors.Control
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.cmdHistorial)
         Me.Panel1.Controls.Add(Me.cmdSaldos)
         Me.Panel1.Controls.Add(Me.cmdGasolineros)
         Me.Panel1.Controls.Add(Me.cmdSalir)
@@ -484,7 +497,7 @@ Partial Class frmRespotajes
         Me.cmdSaldos.BackColor = System.Drawing.Color.LightBlue
         Me.cmdSaldos.Cursor = System.Windows.Forms.Cursors.Hand
         Me.cmdSaldos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdSaldos.Location = New System.Drawing.Point(3, 168)
+        Me.cmdSaldos.Location = New System.Drawing.Point(3, 223)
         Me.cmdSaldos.Name = "cmdSaldos"
         Me.cmdSaldos.Size = New System.Drawing.Size(196, 49)
         Me.cmdSaldos.TabIndex = 37
@@ -532,16 +545,17 @@ Partial Class frmRespotajes
         '
         Me.Timer1.Interval = 200
         '
-        'Label4
+        'cmdHistorial
         '
-        Me.Label4.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(33, 356)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(171, 21)
-        Me.Label4.TabIndex = 161
-        Me.Label4.Text = "F1 - METER APUNTE"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.cmdHistorial.BackColor = System.Drawing.Color.LightBlue
+        Me.cmdHistorial.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdHistorial.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdHistorial.Location = New System.Drawing.Point(3, 168)
+        Me.cmdHistorial.Name = "cmdHistorial"
+        Me.cmdHistorial.Size = New System.Drawing.Size(196, 49)
+        Me.cmdHistorial.TabIndex = 38
+        Me.cmdHistorial.Text = "HISTORIAL VEHICULO"
+        Me.cmdHistorial.UseVisualStyleBackColor = False
         '
         'frmRespotajes
         '
@@ -617,4 +631,5 @@ Partial Class frmRespotajes
     Friend WithEvents ColumnHeader2 As ColumnHeader
     Friend WithEvents ColumnHeader3 As ColumnHeader
     Friend WithEvents Label4 As Label
+    Friend WithEvents cmdHistorial As Button
 End Class

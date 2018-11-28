@@ -16,10 +16,15 @@ Public Class frmApunte
     Private Sub frmApunte_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
 
         Select Case e.KeyData
+            Case Keys.F1
+                txtMatricula.Text = "0002VIS"
+                txtLitros.Focus()
+            Case Keys.Enter
+                SendKeys.Send("{TAB}")
             Case Keys.Escape
                 Me.Close()
             Case Keys.F5
-                mrGrabar
+                mrGrabar()
         End Select
 
     End Sub

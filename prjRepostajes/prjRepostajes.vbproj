@@ -130,6 +130,12 @@
     <Compile Include="frmConsumos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmHistorico.Designer.vb">
+      <DependentUpon>frmHistorico.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmHistorico.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmRespotajes.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmConsumos.resx">
       <DependentUpon>frmConsumos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHistorico.resx">
+      <DependentUpon>frmHistorico.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRespotajes.resx">
       <DependentUpon>frmRespotajes.vb</DependentUpon>
