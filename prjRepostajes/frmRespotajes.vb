@@ -238,11 +238,11 @@ Public Class frmRespotajes
 
     Private Sub mrEditaRepostaje()
 
-        If prjRepostajes.goUsuario.mnCodigo <> 206 Then Exit Sub
-
         Dim loFormularioApunte As New frmApunte
         loFormularioApunte.msMatricula = grdLineas.Cell(grdLineas.ActiveCell.Row, 3).Text
         loFormularioApunte.mnLitros = mfnDouble(grdLineas.Cell(grdLineas.ActiveCell.Row, 5).Text)
+        loFormularioApunte.mnKilometros = mfnLong(grdLineas.Cell(grdLineas.ActiveCell.Row, 4).Text)
+        loFormularioApunte.mbEditarApunte = True
         loFormularioApunte.mrCargar()
         If (loFormularioApunte.mnLitros > 0) Then
 
@@ -250,6 +250,7 @@ Public Class frmRespotajes
             loRepostaje.mnIdRepostaje = mfnInt32(grdLineas.Cell(grdLineas.ActiveCell.Row, 0).Text)
             loRepostaje.mrRecuperaDatos()
             loRepostaje.mnLitros = loFormularioApunte.mnLitros
+            loRepostaje.mnKilometros = loFormularioApunte.mnKilometros
             loRepostaje.mrGrabaDatos()
 
             ' refresco los datos del repostaje

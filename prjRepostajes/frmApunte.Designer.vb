@@ -29,6 +29,8 @@ Partial Class frmApunte
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.txtKilometros = New System.Windows.Forms.TextBox()
+        Me.lblKilometros = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label2
@@ -50,7 +52,7 @@ Partial Class frmApunte
         Me.txtMatricula.MaxLength = 30
         Me.txtMatricula.Name = "txtMatricula"
         Me.txtMatricula.Size = New System.Drawing.Size(130, 20)
-        Me.txtMatricula.TabIndex = 168
+        Me.txtMatricula.TabIndex = 0
         '
         'Label5
         '
@@ -68,7 +70,7 @@ Partial Class frmApunte
         Me.txtLitros.MaxLength = 30
         Me.txtLitros.Name = "txtLitros"
         Me.txtLitros.Size = New System.Drawing.Size(130, 20)
-        Me.txtLitros.TabIndex = 170
+        Me.txtLitros.TabIndex = 2
         '
         'Label3
         '
@@ -103,12 +105,34 @@ Partial Class frmApunte
         Me.Label4.Text = "F1 - METER LITROS DE LA HOJA"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'txtKilometros
+        '
+        Me.txtKilometros.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtKilometros.Location = New System.Drawing.Point(107, 69)
+        Me.txtKilometros.MaxLength = 30
+        Me.txtKilometros.Name = "txtKilometros"
+        Me.txtKilometros.Size = New System.Drawing.Size(130, 20)
+        Me.txtKilometros.TabIndex = 1
+        Me.txtKilometros.Visible = False
+        '
+        'lblKilometros
+        '
+        Me.lblKilometros.AutoSize = True
+        Me.lblKilometros.Location = New System.Drawing.Point(20, 73)
+        Me.lblKilometros.Name = "lblKilometros"
+        Me.lblKilometros.Size = New System.Drawing.Size(80, 13)
+        Me.lblKilometros.TabIndex = 175
+        Me.lblKilometros.Text = "KILOMETROS:"
+        Me.lblKilometros.Visible = False
+        '
         'frmApunte
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(548, 175)
         Me.ControlBox = False
+        Me.Controls.Add(Me.txtKilometros)
+        Me.Controls.Add(Me.lblKilometros)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtLitros)
@@ -139,4 +163,6 @@ Partial Class frmApunte
     Friend WithEvents Label3 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents Label4 As Label
+    Friend WithEvents txtKilometros As TextBox
+    Friend WithEvents lblKilometros As Label
 End Class
