@@ -1,5 +1,7 @@
 ﻿Option Explicit On
 
+Imports prjControl
+
 Public Class frmHistorico
 
     Public mnIdMatricula As Integer = 0
@@ -98,7 +100,7 @@ Public Class frmHistorico
                 lnConsumo = loRow("litros") * 100 / lnKmsRecorridos
             End If
 
-            grdLineas.Cell(lnLinea, 0).Text = loRow("matricula")
+            grdLineas.Cell(lnLinea, 0).Text = loRow("id_repostaje")
             grdLineas.Cell(lnLinea, 1).Text = loRow("matricula")
             grdLineas.Cell(lnLinea, 2).Text = Format(loRow("fechahora"), "dd/MM/yyyy HH:mm:ss")
             grdLineas.Cell(lnLinea, 3).Text = Format(loRow("litros"), "0.00")
@@ -145,9 +147,35 @@ Public Class frmHistorico
     Private Sub frmHistorico_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
 
         Select Case e.KeyData
+            Case Keys.Enter
+                mrEditaRepostaje()
             Case Keys.Escape
                 Me.Close()
         End Select
+
+    End Sub
+
+    Private Sub mrEditaRepostaje()
+
+        Dim loFormularioApunte As New frmApunte
+        loFormularioApunte.msMatricula = grdLineas.Cell(grdLineas.ActiveCell.Row, 1).Text
+        loFormularioApunte.mnLitros = mfnDouble(grdLineas.Cell(grdLineas.ActiveCell.Row, 3).Text)
+        loFormularioApunte.mnKilometros = mfnLong(grdLineas.Cell(grdLineas.ActiveCell.Row, 4).Text)
+        loFormularioApunte.mbEditarApunte = True
+        loFormularioApunte.mrCargar()
+        If (loFormularioApunte.mnLitros > 0) Then
+
+            Dim loRepostaje As New clsRepostaje
+            loRepostaje.mnIdRepostaje = mfnInt32(grdLineas.Cell(grdLineas.ActiveCell.Row, 0).Text)
+            loRepostaje.mrRecuperaDatos()
+            loRepostaje.mnLitros = loFormularioApunte.mnLitros
+            loRepostaje.mnKilometros = loFormularioApunte.mnKilometros
+            loRepostaje.mrGrabaDatos()
+
+            mrCargaDatos()
+
+        End If
+
 
     End Sub
 
