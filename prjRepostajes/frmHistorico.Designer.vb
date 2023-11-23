@@ -70,7 +70,7 @@ Partial Class frmHistorico
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(524, 30)
         Me.Label2.TabIndex = 168
-        Me.Label2.Text = "ESC - SALIR"
+        Me.Label2.Text = "ESC - SALIR                    F6 - BORRAR APUNTE"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Timer1
@@ -80,13 +80,15 @@ Partial Class frmHistorico
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(548, 621)
+        Me.ClientSize = New System.Drawing.Size(544, 622)
         Me.ControlBox = False
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.lblTitulo)
         Me.Controls.Add(Me.grdLineas)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.KeyPreview = True
+        Me.MaximumSize = New System.Drawing.Size(560, 661)
+        Me.MinimumSize = New System.Drawing.Size(560, 661)
         Me.Name = "frmHistorico"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False

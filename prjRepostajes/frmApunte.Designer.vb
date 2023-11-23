@@ -24,11 +24,11 @@ Partial Class frmApunte
     Private Sub InitializeComponent()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtMatricula = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
+        Me.lblMatricula = New System.Windows.Forms.Label()
         Me.txtLitros = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.lblLitros = New System.Windows.Forms.Label()
+        Me.lblAviso = New System.Windows.Forms.Label()
+        Me.lblAvisoF1 = New System.Windows.Forms.Label()
         Me.txtKilometros = New System.Windows.Forms.TextBox()
         Me.lblKilometros = New System.Windows.Forms.Label()
         Me.SuspendLayout()
@@ -54,14 +54,14 @@ Partial Class frmApunte
         Me.txtMatricula.Size = New System.Drawing.Size(130, 20)
         Me.txtMatricula.TabIndex = 0
         '
-        'Label5
+        'lblMatricula
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(20, 50)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(72, 13)
-        Me.Label5.TabIndex = 169
-        Me.Label5.Text = "MATRICULA:"
+        Me.lblMatricula.AutoSize = True
+        Me.lblMatricula.Location = New System.Drawing.Point(20, 50)
+        Me.lblMatricula.Name = "lblMatricula"
+        Me.lblMatricula.Size = New System.Drawing.Size(72, 13)
+        Me.lblMatricula.TabIndex = 169
+        Me.lblMatricula.Text = "MATRICULA:"
         '
         'txtLitros
         '
@@ -72,38 +72,38 @@ Partial Class frmApunte
         Me.txtLitros.Size = New System.Drawing.Size(130, 20)
         Me.txtLitros.TabIndex = 2
         '
-        'Label3
+        'lblLitros
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(20, 94)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(49, 13)
-        Me.Label3.TabIndex = 171
-        Me.Label3.Text = "LITROS:"
+        Me.lblLitros.AutoSize = True
+        Me.lblLitros.Location = New System.Drawing.Point(20, 94)
+        Me.lblLitros.Name = "lblLitros"
+        Me.lblLitros.Size = New System.Drawing.Size(49, 13)
+        Me.lblLitros.TabIndex = 171
+        Me.lblLitros.Text = "LITROS:"
         '
-        'Label1
+        'lblAviso
         '
-        Me.Label1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(256, 47)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(280, 64)
-        Me.Label1.TabIndex = 172
-        Me.Label1.Text = "* METE UN REPOSTAJE INMEDIATAMENTE ANTERIOR AL APUNTE SELECCIONADO"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lblAviso.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lblAviso.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblAviso.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAviso.Location = New System.Drawing.Point(256, 47)
+        Me.lblAviso.Name = "lblAviso"
+        Me.lblAviso.Size = New System.Drawing.Size(280, 64)
+        Me.lblAviso.TabIndex = 172
+        Me.lblAviso.Text = "* METE UN REPOSTAJE INMEDIATAMENTE ANTERIOR AL APUNTE SELECCIONADO"
+        Me.lblAviso.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Label4
+        'lblAvisoF1
         '
-        Me.Label4.BackColor = System.Drawing.SystemColors.Info
-        Me.Label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(12, 2)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(524, 24)
-        Me.Label4.TabIndex = 173
-        Me.Label4.Text = "F1 - METER LITROS DE LA HOJA"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lblAvisoF1.BackColor = System.Drawing.SystemColors.Info
+        Me.lblAvisoF1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblAvisoF1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAvisoF1.Location = New System.Drawing.Point(12, 2)
+        Me.lblAvisoF1.Name = "lblAvisoF1"
+        Me.lblAvisoF1.Size = New System.Drawing.Size(524, 24)
+        Me.lblAvisoF1.TabIndex = 173
+        Me.lblAvisoF1.Text = "F1 - METER LITROS DE LA HOJA"
+        Me.lblAvisoF1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'txtKilometros
         '
@@ -113,7 +113,6 @@ Partial Class frmApunte
         Me.txtKilometros.Name = "txtKilometros"
         Me.txtKilometros.Size = New System.Drawing.Size(130, 20)
         Me.txtKilometros.TabIndex = 1
-        Me.txtKilometros.Visible = False
         '
         'lblKilometros
         '
@@ -123,7 +122,6 @@ Partial Class frmApunte
         Me.lblKilometros.Size = New System.Drawing.Size(80, 13)
         Me.lblKilometros.TabIndex = 175
         Me.lblKilometros.Text = "KILOMETROS:"
-        Me.lblKilometros.Visible = False
         '
         'frmApunte
         '
@@ -133,12 +131,12 @@ Partial Class frmApunte
         Me.ControlBox = False
         Me.Controls.Add(Me.txtKilometros)
         Me.Controls.Add(Me.lblKilometros)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblAvisoF1)
+        Me.Controls.Add(Me.lblAviso)
         Me.Controls.Add(Me.txtLitros)
-        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.lblLitros)
         Me.Controls.Add(Me.txtMatricula)
-        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.lblMatricula)
         Me.Controls.Add(Me.Label2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.KeyPreview = True
@@ -158,11 +156,11 @@ Partial Class frmApunte
 
     Friend WithEvents Label2 As Label
     Friend WithEvents txtMatricula As TextBox
-    Friend WithEvents Label5 As Label
+    Friend WithEvents lblMatricula As Label
     Friend WithEvents txtLitros As TextBox
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label4 As Label
+    Friend WithEvents lblLitros As Label
+    Friend WithEvents lblAviso As Label
+    Friend WithEvents lblAvisoF1 As Label
     Friend WithEvents txtKilometros As TextBox
     Friend WithEvents lblKilometros As Label
 End Class

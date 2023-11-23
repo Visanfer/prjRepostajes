@@ -1,5 +1,7 @@
 ﻿Option Explicit On
 
+Imports prjControl
+
 Public Class frmConsumos
 
     Public mnEmpresa As Integer
@@ -13,6 +15,8 @@ Public Class frmConsumos
     Private Sub frmConsumos_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
 
         Select Case e.KeyValue
+            Case Keys.F9
+                mrHistorialVehiculo()
             Case Keys.Escape
                 Me.Close()
         End Select
@@ -74,6 +78,21 @@ Public Class frmConsumos
 
     End Sub
 
+    Private Sub mrHistorialVehiculo()
+
+        Dim lnIdMatricula As Integer = mfnInt32(grdLineas.Cell(grdLineas.ActiveCell.Row, 0).Text)
+        If lnIdMatricula > 0 Then
+            Dim loHistorico As New frmHistorico
+            loHistorico.mnIdMatricula = lnIdMatricula
+            loHistorico.msDesde = dtpDesde.Value
+            loHistorico.msHasta = dtpHasta.Value
+            loHistorico.mrCargar()
+        Else
+            MsgBox("NO HAY DATOS PARA ESTE VEHICULO")
+        End If
+
+    End Sub
+
     Private Sub mrCargarDatos()
 
         Dim loBusRepostajes As New clsBusRepostajes
@@ -89,9 +108,9 @@ Public Class frmConsumos
 
             Dim lnLinea As Integer = grdLineas.Rows - 1
 
-            grdLineas.Cell(lnLinea, 0).Text = loRow("matricula")
+            grdLineas.Cell(lnLinea, 0).Text = IIf(IsDBNull(loRow("idmatricula")), 0, loRow("idmatricula"))
             grdLineas.Cell(lnLinea, 1).Text = loRow("matricula")
-            grdLineas.Cell(lnLinea, 2).Text = loRow("descripcion")
+            grdLineas.Cell(lnLinea, 2).Text = IIf(IsDBNull(loRow("descripcion")), "", loRow("descripcion"))
             grdLineas.Cell(lnLinea, 3).Text = Format(loRow("total"), "0.00")
 
             If loRow("totalkms") = 0 Then

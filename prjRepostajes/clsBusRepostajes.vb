@@ -15,11 +15,27 @@ Public Class clsBusRepostajes
 
     Public moGrupoDatos As New DataSet
 
+    Public Function mfnConsumoMedioDia(ByVal lnDias As Integer) As Double
+
+        Dim ldDesde As Date = DateAdd(DateInterval.Day, (-1) * (lnDias + 1), Now)
+        Dim ldHasta As Date = DateAdd(DateInterval.Day, -1, Now)
+        Dim lnConsumoMedio As Double = 0
+
+        Dim lsSql As String = "select sum(litros)/" & lnDias & " as consumo from repostajes where date(fechahora)>'" & Format(ldDesde, formatoFecha) &
+            "' and date(fechahora)<='" & Format(ldHasta, formatoFecha) & "'"
+
+        Dim loDatos As DataTable = New clsControlBD().mfoRecuperaDatos(False, lsSql, "consumos")
+        If loDatos.Rows.Count > 0 AndAlso Not IsDBNull(loDatos.Rows(0)("consumo")) Then
+            lnConsumoMedio = loDatos.Rows(0)("consumo")
+        End If
+
+        Return lnConsumoMedio
+
+    End Function
+
     Public Sub mrRecuperaConsumosMatricula(ByVal lsMatricula As String, ByVal ldDesde As Date, ByVal ldHasta As Date)
 
-        Dim lsSql As String
-
-        lsSql = "select * from repostajes where matricula = '" & lsMatricula &
+        Dim lsSql As String = "select * from repostajes where matricula = '" & lsMatricula &
             "' and date(fechahora)>='" & Format(ldDesde, formatoFecha) &
             "' and date(fechahora)<='" & Format(ldHasta, formatoFecha) &
             "' order by fechahora asc;"
@@ -32,9 +48,7 @@ Public Class clsBusRepostajes
 
     Public Sub mrRecuperaConsumos(ByVal ldDesde As Date, ByVal ldHasta As Date)
 
-        Dim lsSql As String
-
-        lsSql = "select repostajes.matricula,repostajes_matriculas.descripcion,sum(litros) as total, max(kilometros) as totalkms" &
+        Dim lsSql As String = "select idmatricula,repostajes.matricula,repostajes_matriculas.descripcion,sum(litros) as total, max(kilometros) as totalkms" &
             " from repostajes left join repostajes_matriculas on repostajes.matricula=repostajes_matriculas.matricula" &
             " where date(fechahora)>='" & Format(ldDesde, formatoFecha) &
             "' and date(fechahora)<='" & Format(ldHasta, formatoFecha) &
@@ -48,10 +62,8 @@ Public Class clsBusRepostajes
 
     Public Sub mrRecuperaGasolineros()
 
-        Dim lsSql As String
         'Dim loGasolinero As clsGasolinero
-
-        lsSql = "select repostajes_gasolineros.*, usuarios.nom, usuarios.cla, usuarios.act from repostajes_gasolineros left join usuarios" &
+        Dim lsSql As String = "select repostajes_gasolineros.*, usuarios.nom, usuarios.cla, usuarios.act from repostajes_gasolineros left join usuarios" &
             " on repostajes_gasolineros.idusuario=usuarios.cod order by idusuario desc"
 
         Dim loDatos As DataTable = New clsControlBD().mfoRecuperaDatos(False, lsSql, "gasolineros")
@@ -70,10 +82,8 @@ Public Class clsBusRepostajes
 
     Public Sub mrRecuperaMatriculas()
 
-        Dim lsSql As String
         'Dim loMatricula As clsMatricula
-
-        lsSql = "select * from repostajes_matriculas order by idmatricula desc"
+        Dim lsSql As String = "select * from repostajes_matriculas order by matricula asc"
 
         Dim loDatos As DataTable = New clsControlBD().mfoRecuperaDatos(False, lsSql, "matriculas")
         If moGrupoDatos.Tables.Contains("matriculas") Then moGrupoDatos.Tables.Remove("matriculas")
@@ -91,9 +101,7 @@ Public Class clsBusRepostajes
 
     Public Sub mrRecuperaRepostajes(ByVal lnLimite As Integer)
 
-        Dim lsSql As String
-
-        lsSql = "select * from repostajes left join usuarios" &
+        Dim lsSql As String = "select * from repostajes left join usuarios" &
             " on repostajes.gasolinero = usuarios.cod order by id_repostaje desc"
         If lnLimite > 0 Then lsSql = lsSql & " limit " & lnLimite
 
@@ -106,9 +114,7 @@ Public Class clsBusRepostajes
     Public Sub mrRecuperaEstado(ByVal lnDias As Integer)
 
         Dim ldDesde As Date = DateAdd(DateInterval.Day, lnDias * -1, Now)
-        Dim lsSql As String
-
-        lsSql = "select * from repostajes left join usuarios" &
+        Dim lsSql As String = "select * from repostajes left join usuarios" &
             " on repostajes.gasolinero = usuarios.cod" &
             " left join repostajes_matriculas on repostajes.matricula=repostajes_matriculas.matricula" &
             " where date(fechahora)>'" & Format(ldDesde, "yyyy/MM/dd") & "'"
@@ -124,10 +130,10 @@ Public Class clsBusRepostajes
 
         For Each loRow As DataRow In loSaldos.Rows
             Dim loNuevo As DataRow = moGrupoDatos.Tables("repostajes").NewRow
-            loNuevo(0) = 0
+            loNuevo(0) = loRow(0)
             loNuevo(1) = loRow(1)
             loNuevo(2) = loRow(2)
-            loNuevo(3) = ""
+            loNuevo(3) = "SALDO"
             loNuevo(4) = 0
             loNuevo(5) = loRow(3)
             loNuevo(6) = 0

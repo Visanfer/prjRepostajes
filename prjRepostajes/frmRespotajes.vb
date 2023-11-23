@@ -15,17 +15,13 @@ Public Class frmRespotajes
         modRepostajes.goProfile.mrRecuperaDatos()
         ' **************************************************
 
-        mrSituaControles()
         mrPreparaGrid()
 
-        Me.ShowDialog()
-
-    End Sub
-
-    Private Sub mrSituaControles()
-
-        grpGasolineros.Top = grpVehiculos.Top
-        grpGasolineros.Left = grpVehiculos.Left
+        If Me.MdiParent Is Nothing Then
+            Me.ShowDialog()
+        Else
+            Me.Show()
+        End If
 
     End Sub
 
@@ -231,7 +227,11 @@ Public Class frmRespotajes
             Case Keys.F9
                 If grdLineas.Focused Then mrEstadistica()
             Case Keys.Escape
-                Me.Close()
+                If grpGasolineros.Visible Then
+                    grpGasolineros.Visible = False
+                Else
+                    Me.Close()
+                End If
         End Select
 
     End Sub
@@ -239,19 +239,33 @@ Public Class frmRespotajes
     Private Sub mrEditaRepostaje()
 
         Dim loFormularioApunte As New frmApunte
+        loFormularioApunte.mnIdLinea = Val(grdLineas.Cell(grdLineas.ActiveCell.Row, 1).Text)
         loFormularioApunte.msMatricula = grdLineas.Cell(grdLineas.ActiveCell.Row, 3).Text
         loFormularioApunte.mnLitros = mfnDouble(grdLineas.Cell(grdLineas.ActiveCell.Row, 5).Text)
         loFormularioApunte.mnKilometros = mfnLong(grdLineas.Cell(grdLineas.ActiveCell.Row, 4).Text)
-        loFormularioApunte.mbEditarApunte = True
+        'loFormularioApunte.mbEditarApunte = True
         loFormularioApunte.mrCargar()
         If (loFormularioApunte.mnLitros > 0) Then
 
-            Dim loRepostaje As New clsRepostaje
-            loRepostaje.mnIdRepostaje = mfnInt32(grdLineas.Cell(grdLineas.ActiveCell.Row, 0).Text)
-            loRepostaje.mrRecuperaDatos()
-            loRepostaje.mnLitros = loFormularioApunte.mnLitros
-            loRepostaje.mnKilometros = loFormularioApunte.mnKilometros
-            loRepostaje.mrGrabaDatos()
+
+            If loFormularioApunte.msMatricula = "CONTADOR" Then
+
+                Dim loSaldo As New clsSaldo
+                loSaldo.mnIdSaldo = loFormularioApunte.mnIdLinea
+                loSaldo.mrRecuperaDatos()
+                loSaldo.mnContador = loFormularioApunte.mnLitros
+                loSaldo.mrGrabaDatos()
+
+            Else
+
+                Dim loRepostaje As New clsRepostaje
+                loRepostaje.mnIdRepostaje = loFormularioApunte.mnIdLinea
+                loRepostaje.mrRecuperaDatos()
+                loRepostaje.mnLitros = loFormularioApunte.mnLitros
+                loRepostaje.mnKilometros = loFormularioApunte.mnKilometros
+                loRepostaje.mrGrabaDatos()
+
+            End If
 
             ' refresco los datos del repostaje
             mrCargaRepostajes()
@@ -263,13 +277,19 @@ Public Class frmRespotajes
 
     Private Sub mrBorraApunte()
 
-        If prjRepostajes.goUsuario.mnCodigo <> 206 Then Exit Sub
+        'If prjRepostajes.goUsuario.mnCodigo <> 206 Then Exit Sub
 
         Dim lsRes As MsgBoxResult = MsgBox("¿Realmente deseas borrar el apunte?", MsgBoxStyle.Information + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "Visanfer.Net")
         If lsRes = MsgBoxResult.Yes Then
             Dim loRepostaje As New clsRepostaje
             loRepostaje.mnIdRepostaje = mfnInt32(grdLineas.Cell(grdLineas.ActiveCell.Row, 0).Text)
-            loRepostaje.mrBorraDatos()
+            If loRepostaje.mnIdRepostaje > 0 Then
+                loRepostaje.mrBorraDatos()
+            Else
+                Dim loSaldo As New clsSaldo
+                loSaldo.mnIdSaldo = mfnInt32(grdLineas.Cell(grdLineas.ActiveCell.Row, 0).Tag)
+                loSaldo.mrBorraDatos()
+            End If
             mrCargaRepostajes()
         End If
 
@@ -281,12 +301,14 @@ Public Class frmRespotajes
 
     Private Sub mrHistorialVehiculo()
 
-        Dim lnIdMatricula As Integer = mfnInt32(grdLineas.Cell(grdLineas.ActiveCell.Row, 9).Text)
-        If lnIdMatricula > 0 Then
-            Dim loHistorico As New frmHistorico
-            loHistorico.mnIdMatricula = lnIdMatricula
-            loHistorico.mrCargar()
+        Dim loBuscaMatriculas As New frmVehiculos
+        loBuscaMatriculas.mbModoEditor = False
+        loBuscaMatriculas.mrCargar()
 
+        If loBuscaMatriculas.mnVehiculoSeleccionado > 0 Then
+            Dim loHistorico As New frmHistorico
+            loHistorico.mnIdMatricula = loBuscaMatriculas.mnVehiculoSeleccionado
+            loHistorico.mrCargar()
         End If
 
     End Sub
@@ -296,20 +318,25 @@ Public Class frmRespotajes
         moBusRepostajes = New clsBusRepostajes
         'moBusRepostajes.mrRecuperaRepostajes(50)
         moBusRepostajes.mrRecuperaEstado(30)
+        If moBusRepostajes.moGrupoDatos.Tables("repostajes").Rows.Count = 0 Then Exit Sub
+
+        Dim loRegistros() As DataRow = moBusRepostajes.moGrupoDatos.Tables("repostajes").Select("", "fechahora desc")
 
         grdLineas.Visible = False
         grdLineas.Rows = 1
+        grdLineas.Rows = loRegistros.Length
 
-        Dim loRegistros() As DataRow = moBusRepostajes.moGrupoDatos.Tables("repostajes").Select("", "fechahora desc")
-        For lnI As Integer = 0 To loRegistros.Length - 1
+        For lnI As Integer = 0 To loRegistros.Length - 2
 
             Application.DoEvents()
-            grdLineas.Rows = grdLineas.Rows + 1
+            'grdLineas.Rows = grdLineas.Rows + 1
 
-            Dim lnLinea As Integer = grdLineas.Rows - 1
+            'Dim lnLinea As Integer = grdLineas.Rows - 1
+            Dim lnLinea As Integer = lnI + 1
             Dim loRow As DataRow = loRegistros(lnI)
 
             grdLineas.Cell(lnLinea, 0).Text = loRow("id_repostaje")
+            grdLineas.Cell(lnLinea, 0).Tag = ""
             grdLineas.Cell(lnLinea, 1).Text = loRow("id_repostaje")
             grdLineas.Cell(lnLinea, 2).Text = Format(loRow("fechahora"), "dd/MM/yyyy HH:mm:ss")
             grdLineas.Cell(lnLinea, 3).Text = loRow("matricula")
@@ -319,8 +346,10 @@ Public Class frmRespotajes
             grdLineas.Cell(lnLinea, 8).Text = loRow("descripcion") & ""
             grdLineas.Cell(lnLinea, 9).Text = If(IsDBNull(loRow("idmatricula")), 0, loRow("idmatricula"))
 
-            If loRow("id_repostaje") = 0 Then
+            If loRow("MATRICULA") = "SALDO" Then
 
+                grdLineas.Cell(lnLinea, 0).Text = 0
+                grdLineas.Cell(lnLinea, 0).Tag = loRow("id_repostaje")
                 grdLineas.Cell(lnLinea, 3).Text = "CONTADOR"
                 grdLineas.Cell(lnLinea, 4).Text = Format(loRow("litros"), "0.00")
                 grdLineas.Cell(lnLinea, 5).Text = ""
@@ -352,6 +381,7 @@ Public Class frmRespotajes
                 grdLineas.Cell(lnLinea, 8).BackColor = Color.LightPink
             End If
 
+            lnLinea = lnLinea + 1
 
         Next
 
@@ -362,6 +392,7 @@ Public Class frmRespotajes
 
         For lnJ As Integer = grdLineas.Rows - 1 To 1 Step -1
 
+            'Debug.Print(grdLineas.Cell(lnJ, 0).Text)
             If grdLineas.Cell(lnJ, 0).Text = "0" Then
                 lnSaldoActual = mfnDouble(grdLineas.Cell(lnJ, 4).Text)
                 If (lnSumatorio > 0) AndAlso (lnSaldoAnterior > 0) Then
@@ -395,30 +426,50 @@ Public Class frmRespotajes
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Timer1.Enabled = False
+        mrCargaSaldoDeposito()
         mrCargaRepostajes()
-        mrCargaVehiculos()
     End Sub
 
-    Private Sub mrCargaVehiculos()
+    Private Sub mrCargaSaldoDeposito()
 
-        moBusRepostajes.mrRecuperaMatriculas()
+        Dim loDeposito As New clsDeposito
+        loDeposito.mnIdDeposito = 1
+        loDeposito.mrRecuperaDatos()
 
-        lstVehiculos.BeginUpdate()
-        lstVehiculos.Items.Clear()
+        Dim lnContenido As Double = loDeposito.mfnContenidoActual()
+        lblPorContenido.Text = Format(lnContenido, "0,000") & " litros"
 
-        For Each loRow As DataRow In moBusRepostajes.moGrupoDatos.Tables("matriculas").Rows
-            Dim loItem As New ListViewItem
-            loItem.Tag = loRow("idmatricula")
-            loItem.Text = loRow("activo")
-            loItem.SubItems.Add(loRow("matricula"))
-            loItem.SubItems.Add(loRow("descripcion"))
-            loItem.SubItems.Add(IIf(loRow("obligatoriokms") = 1, "OBL", ""))
-            loItem.SubItems.Add(loRow("litrosmaximos"))
-            loItem.SubItems.Add(IIf(loRow("activo") = 1, "SI", "NO"))
-            lstVehiculos.Items.Add(loItem)
-        Next
+        Dim ln100 As Integer = 211
 
-        lstVehiculos.EndUpdate()
+        ' hago una regla de 3
+        Dim lnAlto As Integer = (lnContenido * ln100) / loDeposito.mnCapacidad
+        lblBarraContenido.Visible = False
+        lblBarraContenido.Height = lnAlto
+        lblBarraContenido.Top = (ln100 - lnAlto)
+
+        ' 210 - 157 - 105 - 52
+
+        If lnAlto > 157 Then
+            lblBarraContenido.BackColor = Color.Lime
+        ElseIf lnAlto <= 157 And lnAlto > 105 Then
+            lblBarraContenido.BackColor = Color.Yellow
+        ElseIf lnAlto <= 105 And lnAlto > 52 Then
+            lblBarraContenido.BackColor = Color.Orange
+        Else
+            lblBarraContenido.BackColor = Color.Red
+        End If
+
+        lblBarraContenido.Visible = True
+
+        ' ahora calculo la fecha prevista fin
+        Dim loBusRepostajes As New clsBusRepostajes
+        Dim lnConsumoMedio As Double = loBusRepostajes.mfnConsumoMedioDia(30)
+        If lnConsumoMedio = 0 Then lnConsumoMedio = 10
+
+        Dim lnDiasQueda As Double = lnContenido / lnConsumoMedio
+        Dim ldFecha As Date = DateAdd(DateInterval.Day, lnDiasQueda, Now)
+
+        lblHasta.Text = "Final previsto " & Format(ldFecha, "dd/MM/yyyy")
 
     End Sub
 
@@ -444,64 +495,23 @@ Public Class frmRespotajes
     End Sub
 
     Private Sub cmdVehiculos_Click(sender As Object, e As EventArgs) Handles cmdVehiculos.Click
-        grpGasolineros.Visible = False
-        grpVehiculos.Visible = True
-        mrCargaVehiculos()
+        mrBuscaVehiculos()
+        'grpGasolineros.Visible = False
+        'grpVehiculos.Visible = True
+        'mrCargaVehiculos()
+    End Sub
+
+    Private Sub mrBuscaVehiculos()
+
+        Dim loVehiculos As New frmVehiculos
+        loVehiculos.mbModoEditor = True
+        loVehiculos.mrCargar()
+
     End Sub
 
     Private Sub cmdGasolineros_Click(sender As Object, e As EventArgs) Handles cmdGasolineros.Click
-        grpVehiculos.Visible = False
         grpGasolineros.Visible = True
         mrCargaGasolineros()
-    End Sub
-
-    Private Sub cmdNuevoVehiculos_Click(sender As Object, e As EventArgs) Handles cmdNuevoVehiculos.Click
-        txtIdxVehiculo.Text = ""
-        txtMatricula.Text = ""
-        txtLitrosMaximos.Text = ""
-        txtDesMatricula.Text = ""
-        chkMatriculaActiva.Checked = True
-    End Sub
-
-    Private Sub cmdGrabaVehiculos_Click(sender As Object, e As EventArgs) Handles cmdGrabaVehiculos.Click
-        mrGrabaMatricula
-    End Sub
-
-    Private Sub mrGrabaMatricula()
-
-        Dim loMatricula As New clsMatricula
-        loMatricula.mnIdMatricula = mfnInt32(txtIdxVehiculo.Text)
-        loMatricula.msMatricula = Trim(txtMatricula.Text)
-        loMatricula.msDescripcion = Trim(txtDesMatricula.Text)
-        loMatricula.mnLitrosMaximos = mfnInteger(txtLitrosMaximos.Text)
-        loMatricula.mnActivo = IIf(chkMatriculaActiva.Checked, 1, 0)
-        loMatricula.mnObligatorioKms = IIf(chkPedirKilometros.Checked, 1, 0)
-        loMatricula.mbEsNuevo = (loMatricula.mnIdMatricula = 0)
-        If loMatricula.mbEsNuevo Then
-            loMatricula.mrRecuperaMatricula()
-            If Not loMatricula.mbEsNuevo Then
-                MsgBox("ESTA MATRICULA ESTÁ YA METIDA", MsgBoxStyle.Exclamation, "Visanfer.Net")
-                Exit Sub
-            End If
-        End If
-        loMatricula.mrGrabaDatos()
-
-        mrCargaVehiculos()
-
-        lstVehiculos.Focus()
-        SendKeys.Send("{HOME}")
-        SendKeys.Send("{LEFT}")
-
-    End Sub
-
-    Private Sub lstVehiculos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstVehiculos.SelectedIndexChanged
-        If lstVehiculos.SelectedItems.Count = 0 Then Exit Sub
-        txtIdxVehiculo.Text = lstVehiculos.SelectedItems(0).Tag
-        chkMatriculaActiva.Checked = IIf(lstVehiculos.SelectedItems(0).Text = "1", True, False)
-        chkPedirKilometros.Checked = IIf(lstVehiculos.SelectedItems(0).SubItems(3).Text = "OBL", True, False)
-        txtMatricula.Text = lstVehiculos.SelectedItems(0).SubItems(1).Text
-        txtLitrosMaximos.Text = lstVehiculos.SelectedItems(0).SubItems(4).Text
-        txtDesMatricula.Text = lstVehiculos.SelectedItems(0).SubItems(2).Text
     End Sub
 
     Private Sub cmdGrabaGasolinero_Click(sender As Object, e As EventArgs) Handles cmdGrabaGasolinero.Click
@@ -528,6 +538,16 @@ Public Class frmRespotajes
 
     Private Sub cmdHistorial_Click(sender As Object, e As EventArgs) Handles cmdHistorial.Click
         mrHistorialVehiculo
+    End Sub
+
+    Private Sub cmdSaldos_Click(sender As Object, e As EventArgs) Handles cmdSaldos.Click
+        Dim loDeposito As New frmDesposito
+        loDeposito.mnIdDeposito = 1
+        loDeposito.mrCargar()
+    End Sub
+
+    Private Sub cmdRefrescaContenido_Click(sender As Object, e As EventArgs) Handles cmdRefrescaContenido.Click
+        mrCargaSaldoDeposito()
     End Sub
 
 End Class

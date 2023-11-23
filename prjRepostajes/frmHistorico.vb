@@ -5,6 +5,9 @@ Imports prjControl
 Public Class frmHistorico
 
     Public mnIdMatricula As Integer = 0
+    Public msDesde As String = ""
+    Public msHasta As String = ""
+
     Dim mbPrimeraVez As Boolean = True
 
     Public Sub mrCargar()
@@ -71,8 +74,16 @@ Public Class frmHistorico
 
         lblTitulo.Text = loVehiculo.msMatricula & " - " & loVehiculo.msDescripcion
 
+        Dim ldDesde As Date = DateAdd(DateInterval.Year, -10, Now)
+        Dim ldHasta As Date = Now
+
+        If msDesde.Length > 0 Then
+            ldDesde = CDate(msDesde)
+            ldHasta = CDate(msHasta)
+        End If
+
         Dim loBusRepostajes As New clsBusRepostajes
-        loBusRepostajes.mrRecuperaConsumosMatricula(loVehiculo.msMatricula, DateAdd(DateInterval.Day, -180, Now), Now)
+        loBusRepostajes.mrRecuperaConsumosMatricula(loVehiculo.msMatricula, ldDesde, ldHasta)
 
         grdLineas.Visible = False
         grdLineas.Rows = 1
@@ -151,7 +162,22 @@ Public Class frmHistorico
                 mrEditaRepostaje()
             Case Keys.Escape
                 Me.Close()
+            Case Keys.F6
+                mrBorraApunte
         End Select
+
+    End Sub
+
+    Private Sub mrBorraApunte()
+
+        Dim lsResult As MsgBoxResult = MsgBox("¿Realmente quieres borrar este apunte?", MsgBoxStyle.Information + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "Visanfer.Net")
+        If lsResult = MsgBoxResult.Yes Then
+            Dim loRepostaje As New clsRepostaje
+            loRepostaje.mnIdRepostaje = Val(grdLineas.Cell(grdLineas.ActiveCell.Row, 0).Text)
+            loRepostaje.mrBorraDatos()
+            ' refresco el grid *********************************
+            mrCargaDatos()
+        End If
 
     End Sub
 
@@ -161,7 +187,7 @@ Public Class frmHistorico
         loFormularioApunte.msMatricula = grdLineas.Cell(grdLineas.ActiveCell.Row, 1).Text
         loFormularioApunte.mnLitros = mfnDouble(grdLineas.Cell(grdLineas.ActiveCell.Row, 3).Text)
         loFormularioApunte.mnKilometros = mfnLong(grdLineas.Cell(grdLineas.ActiveCell.Row, 4).Text)
-        loFormularioApunte.mbEditarApunte = True
+        'loFormularioApunte.mbEditarApunte = True
         loFormularioApunte.mrCargar()
         If (loFormularioApunte.mnLitros > 0) Then
 

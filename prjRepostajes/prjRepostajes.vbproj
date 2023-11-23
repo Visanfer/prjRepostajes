@@ -14,6 +14,14 @@
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <Deterministic>true</Deterministic>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,7 +30,8 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>..\..\..\dll\</OutputPath>
-    <DocumentationFile>prjRepostajes.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -31,8 +40,9 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>prjRepostajes.xml</DocumentationFile>
+    <OutputPath>..\..\..\dll\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -47,23 +57,28 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\..\..\dll\</OutputPath>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="control, Version=4.0.4394.17294, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\dll\control.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\dll\CrystalDecisions.ReportSource.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Windows\assembly\GAC_MSIL\CrystalDecisions.Shared\13.0.2000.0__692fbea5521e1304\CrystalDecisions.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\dll\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="FlexCell, Version=1.5.2.0, Culture=neutral, PublicKeyToken=6f86587eb70ee309">
       <SpecificVersion>False</SpecificVersion>
@@ -112,7 +127,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsBusRepostajes.vb" />
+    <Compile Include="clsCarga.vb" />
     <Compile Include="clsChofer.vb" />
+    <Compile Include="clsDeposito.vb" />
     <Compile Include="clsEstadistica.vb" />
     <Compile Include="clsGasolinero.vb" />
     <Compile Include="clsMatricula.vb" />
@@ -130,6 +147,12 @@
     <Compile Include="frmConsumos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmDesposito.Designer.vb">
+      <DependentUpon>frmDesposito.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDesposito.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmHistorico.Designer.vb">
       <DependentUpon>frmHistorico.vb</DependentUpon>
     </Compile>
@@ -143,6 +166,12 @@
       <DependentUpon>frmRespotajes.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmVehiculo.Designer.vb">
+      <DependentUpon>frmVehiculo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmVehiculo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmVehiculos.Designer.vb">
       <DependentUpon>frmVehiculos.vb</DependentUpon>
     </Compile>
@@ -154,6 +183,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -173,11 +203,17 @@
     <EmbeddedResource Include="frmConsumos.resx">
       <DependentUpon>frmConsumos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDesposito.resx">
+      <DependentUpon>frmDesposito.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmHistorico.resx">
       <DependentUpon>frmHistorico.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRespotajes.resx">
       <DependentUpon>frmRespotajes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVehiculo.resx">
+      <DependentUpon>frmVehiculo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmVehiculos.resx">
       <DependentUpon>frmVehiculos.vb</DependentUpon>

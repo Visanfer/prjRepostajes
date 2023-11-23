@@ -74,9 +74,9 @@ Public Class clsSaldo
         Else
             lsSql = "update repostajes_saldos set idgasolinero = " & mnIdGasolinero &
                     ", fechahora = '" & Format(mdFechaHora, "yyyy/MM/dd HH:mm:ss") &
-                    ", contador = " & mfsFormatoDoble(mnContador, 2) &
+                    "', contador = " & mfsFormatoDoble(mnContador, 2) &
                     ", imei = '" & msImei &
-                    "' where repostajes_saldos = " & mnIdSaldo
+                    "' where idsaldo = " & mnIdSaldo
             loComando = New MySqlCommand(lsSql, lconConexion)
             loComando.ExecuteNonQuery()
         End If
@@ -94,7 +94,7 @@ Public Class clsSaldo
         Dim lsSql As String
         Dim loComando As New MySqlCommand()
 
-        lsSql = "delete from repostajes_saldos where idgasolinero = " & mnIdGasolinero
+        lsSql = "delete from repostajes_saldos where idsaldo = " & mnIdSaldo
         mbEsNuevo = True
 
         loComando = New MySqlCommand(lsSql, lconConexion)

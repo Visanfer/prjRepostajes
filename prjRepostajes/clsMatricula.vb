@@ -8,8 +8,21 @@ Public Class clsMatricula
     Public msMatricula As String = ""
     Public msDescripcion As String = ""
     Public mnActivo As Integer = 1
-    Public mnObligatorioKms As Integer = 1
+    Public mnObligatorioKms As Integer = 0
     Public mnLitrosMaximos As Integer = 0
+    Public mnTipo As Integer = 0
+    Public msObservaciones As String = ""
+    Public mnRepostajePermitido As Integer = 0
+    Public msPoliza As String = ""
+    Public msAseguradora As String = ""
+    Public mnImporteSeguro As Double = 0
+    Public mdInicioSeguro As Date = Now
+    Public mdFinalSeguro As Date = Now
+    Public mnTara As Integer = 0
+    Public mnPMA As Integer = 0
+    Public mnRenting As Integer = 0
+    Public mnExterno As Integer = 0
+    Public mnReparto As Integer = 0
 
     Public msResultadoEstadistica As String = ""
     Public msValoresEstadistica As String = ""
@@ -51,13 +64,62 @@ Public Class clsMatricula
     End Sub
 
     Public Sub mrCargaDatos(ByVal loRecord As DataRow)
+
+
+
         mnIdMatricula = mfnInteger(loRecord("idmatricula") & "")
         msMatricula = Trim(loRecord("matricula") & "")
         msDescripcion = Trim(loRecord("descripcion") & "")
         mnActivo = mfnInteger(loRecord("activo") & "")
         mnObligatorioKms = mfnInteger(loRecord("obligatoriokms") & "")
         mnLitrosMaximos = mfnInteger(loRecord("litrosmaximos") & "")
+
+        ' campos nuevos **************************************
+        mnTipo = mfnInteger(loRecord("tipo") & "")
+        msObservaciones = Trim(loRecord("observaciones") & "")
+        mnRepostajePermitido = mfnInteger(loRecord("repostaje") & "")
+        msPoliza = Trim(loRecord("poliza") & "")
+        msAseguradora = Trim(loRecord("aseguradora") & "")
+        mnImporteSeguro = mfnDouble(loRecord("importeseguro") & "")
+        mdInicioSeguro = mfdFecha(loRecord("inicioseguro") & "")
+        mdFinalSeguro = mfdFecha(loRecord("finalseguro") & "")
+        mnTara = mfnInteger(loRecord("tara") & "")
+        mnPMA = mfnInteger(loRecord("pma") & "")
+        mnRenting = mfnInteger(loRecord("renting") & "")
+        mnExterno = mfnInteger(loRecord("externo") & "")
+        mnReparto = mfnInteger(loRecord("reparto") & "")
+
+        'If New clsControlBD().mfbExisteCampo("repostajes_matriculas", "tipo") Then
+        'End If
+
     End Sub
+
+    Public Function mfsTipo() As String
+
+        Select Case mnTipo
+            Case 1
+                Return "CAMION CON GRUA"
+            Case 2
+                Return "CAMION SIN GRUA"
+            Case 3
+                Return "HORMIGONERA"
+            Case 4
+                Return "CABEZA TRACTORA"
+            Case 5
+                Return "FURGONETA"
+            Case 6
+                Return "TURISMO"
+            Case 7
+                Return "CARRETILLA"
+            Case 8
+                Return "REMOLQUE"
+            Case 9
+                Return "OTROS"
+            Case Else
+                Return ""
+        End Select
+
+    End Function
 
     Public Sub mrGrabaDatos()
 
@@ -68,12 +130,27 @@ Public Class clsMatricula
         If lconConexion.State = ConnectionState.Closed Then Exit Sub
 
         If mbEsNuevo Then
-            lsSql = "insert into repostajes_matriculas(matricula,descripcion,activo,obligatoriokms,litrosmaximos) values ('" &
+            lsSql = "insert into repostajes_matriculas(matricula,descripcion,activo,obligatoriokms,litrosmaximos," &
+                        "tipo,observaciones,repostaje,poliza,aseguradora,importeseguro,inicioseguro,finalseguro,tara," &
+                        "pma,renting,externo,reparto) values ('" &
                         msMatricula & "','" &
                         msDescripcion & "'," &
                         mnActivo & "," &
                         mnObligatorioKms & "," &
-                        mnLitrosMaximos & "); SELECT LAST_INSERT_ID();"
+                        mnLitrosMaximos & "," &
+                        mnTipo & ",'" &
+                        msObservaciones & "'," &
+                        mnRepostajePermitido & ",'" &
+                        msPoliza & "','" &
+                        msAseguradora & "'," &
+                        mfsFormatoDoble(mnImporteSeguro, 2) & ",'" &
+                        Format(mdInicioSeguro, formatoFecha) & "','" &
+                        Format(mdFinalSeguro, formatoFecha) & "'," &
+                        mnTara & "," &
+                        mnPMA & "," &
+                        mnRenting & "," &
+                        mnExterno & "," &
+                        mnReparto & "); SELECT LAST_INSERT_ID();"
             loComando = New MySqlCommand(lsSql, lconConexion)
             mnIdMatricula = Convert.ToInt64(loComando.ExecuteScalar())
         Else
@@ -82,6 +159,19 @@ Public Class clsMatricula
                     "', activo = " & mnActivo &
                     ", obligatoriokms = " & mnObligatorioKms &
                     ", litrosmaximos = " & mnLitrosMaximos &
+                    ", tipo = " & mnTipo &
+                    ", observaciones = '" & msObservaciones &
+                    "', repostaje = " & mnRepostajePermitido &
+                    ", poliza = '" & msPoliza &
+                    "', aseguradora = '" & msAseguradora &
+                    "', importeseguro = " & mfsFormatoDoble(mnImporteSeguro, 2) &
+                    ", inicioseguro = '" & Format(mdInicioSeguro, formatoFecha) &
+                    "', finalseguro = '" & Format(mdFinalSeguro, formatoFecha) &
+                    "', tara = " & mnTara &
+                    ", pma = " & mnPMA &
+                    ", renting = " & mnRenting &
+                    ", externo = " & mnExterno &
+                    ", reparto = " & mnReparto &
                     " where idmatricula = " & mnIdMatricula
             loComando = New MySqlCommand(lsSql, lconConexion)
             loComando.ExecuteNonQuery()

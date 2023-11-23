@@ -38,41 +38,32 @@ Partial Class frmRespotajes
         Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.grpVehiculos = New System.Windows.Forms.GroupBox()
-        Me.txtLitrosMaximos = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.chkPedirKilometros = New System.Windows.Forms.CheckBox()
-        Me.cmdNuevoVehiculos = New System.Windows.Forms.Button()
-        Me.txtIdxVehiculo = New System.Windows.Forms.TextBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.txtDesMatricula = New System.Windows.Forms.TextBox()
-        Me.txtMatricula = New System.Windows.Forms.TextBox()
-        Me.chkMatriculaActiva = New System.Windows.Forms.CheckBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.cmdGrabaVehiculos = New System.Windows.Forms.Button()
-        Me.lstVehiculos = New System.Windows.Forms.ListView()
-        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader10 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader12 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.grdLineas = New FlexCell.Grid()
         Me.cmdGasolineros = New System.Windows.Forms.Button()
         Me.cmdSalir = New System.Windows.Forms.Button()
         Me.cmdEstadisticas = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lblHasta = New System.Windows.Forms.Label()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.lblBarraContenido = New System.Windows.Forms.Label()
+        Me.cmdRefrescaContenido = New System.Windows.Forms.Button()
+        Me.Label41 = New System.Windows.Forms.Label()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.Label39 = New System.Windows.Forms.Label()
+        Me.lblPorContenido = New System.Windows.Forms.Label()
+        Me.Label38 = New System.Windows.Forms.Label()
+        Me.cmdHistorial = New System.Windows.Forms.Button()
         Me.cmdSaldos = New System.Windows.Forms.Button()
         Me.cmdVehiculos = New System.Windows.Forms.Button()
         Me.lblPrograma = New System.Windows.Forms.Label()
         Me.lblTitulo = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.cmdHistorial = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         Me.grpGasolineros.SuspendLayout()
-        Me.grpVehiculos.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
+        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -90,12 +81,11 @@ Partial Class frmRespotajes
         'Panel2
         '
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.Controls.Add(Me.grpGasolineros)
         Me.Panel2.Controls.Add(Me.Label4)
         Me.Panel2.Controls.Add(Me.lblContador)
         Me.Panel2.Controls.Add(Me.lblTextoContador)
         Me.Panel2.Controls.Add(Me.cmdRefresca)
-        Me.Panel2.Controls.Add(Me.grpGasolineros)
-        Me.Panel2.Controls.Add(Me.grpVehiculos)
         Me.Panel2.Controls.Add(Me.grdLineas)
         Me.Panel2.Controls.Add(Me.Label1)
         Me.Panel2.Location = New System.Drawing.Point(222, 73)
@@ -107,7 +97,7 @@ Partial Class frmRespotajes
         '
         Me.Label4.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(33, 356)
+        Me.Label4.Location = New System.Drawing.Point(33, 622)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(171, 21)
         Me.Label4.TabIndex = 161
@@ -119,7 +109,7 @@ Partial Class frmRespotajes
         Me.lblContador.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.lblContador.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblContador.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblContador.Location = New System.Drawing.Point(609, 353)
+        Me.lblContador.Location = New System.Drawing.Point(609, 619)
         Me.lblContador.Name = "lblContador"
         Me.lblContador.Size = New System.Drawing.Size(142, 26)
         Me.lblContador.TabIndex = 161
@@ -131,7 +121,7 @@ Partial Class frmRespotajes
         Me.lblTextoContador.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.lblTextoContador.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblTextoContador.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTextoContador.Location = New System.Drawing.Point(3, 353)
+        Me.lblTextoContador.Location = New System.Drawing.Point(3, 619)
         Me.lblTextoContador.Name = "lblTextoContador"
         Me.lblTextoContador.Size = New System.Drawing.Size(766, 26)
         Me.lblTextoContador.TabIndex = 160
@@ -157,7 +147,7 @@ Partial Class frmRespotajes
         Me.grpGasolineros.Controls.Add(Me.cmdBorrarGasolinero)
         Me.grpGasolineros.Controls.Add(Me.cmdGrabaGasolinero)
         Me.grpGasolineros.Controls.Add(Me.lstGasolineros)
-        Me.grpGasolineros.Location = New System.Drawing.Point(30, 74)
+        Me.grpGasolineros.Location = New System.Drawing.Point(3, 389)
         Me.grpGasolineros.Name = "grpGasolineros"
         Me.grpGasolineros.Size = New System.Drawing.Size(766, 255)
         Me.grpGasolineros.TabIndex = 149
@@ -230,198 +220,6 @@ Partial Class frmRespotajes
         Me.ColumnHeader3.Text = "PASSWORD"
         Me.ColumnHeader3.Width = 100
         '
-        'grpVehiculos
-        '
-        Me.grpVehiculos.Controls.Add(Me.txtLitrosMaximos)
-        Me.grpVehiculos.Controls.Add(Me.Label3)
-        Me.grpVehiculos.Controls.Add(Me.chkPedirKilometros)
-        Me.grpVehiculos.Controls.Add(Me.cmdNuevoVehiculos)
-        Me.grpVehiculos.Controls.Add(Me.txtIdxVehiculo)
-        Me.grpVehiculos.Controls.Add(Me.Label8)
-        Me.grpVehiculos.Controls.Add(Me.txtDesMatricula)
-        Me.grpVehiculos.Controls.Add(Me.txtMatricula)
-        Me.grpVehiculos.Controls.Add(Me.chkMatriculaActiva)
-        Me.grpVehiculos.Controls.Add(Me.Label2)
-        Me.grpVehiculos.Controls.Add(Me.Label5)
-        Me.grpVehiculos.Controls.Add(Me.cmdGrabaVehiculos)
-        Me.grpVehiculos.Controls.Add(Me.lstVehiculos)
-        Me.grpVehiculos.Location = New System.Drawing.Point(3, 387)
-        Me.grpVehiculos.Name = "grpVehiculos"
-        Me.grpVehiculos.Size = New System.Drawing.Size(766, 255)
-        Me.grpVehiculos.TabIndex = 148
-        Me.grpVehiculos.TabStop = False
-        Me.grpVehiculos.Text = " VEHICULOS AUTORIZADOS "
-        '
-        'txtLitrosMaximos
-        '
-        Me.txtLitrosMaximos.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtLitrosMaximos.Location = New System.Drawing.Point(652, 89)
-        Me.txtLitrosMaximos.MaxLength = 30
-        Me.txtLitrosMaximos.Name = "txtLitrosMaximos"
-        Me.txtLitrosMaximos.Size = New System.Drawing.Size(96, 20)
-        Me.txtLitrosMaximos.TabIndex = 158
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(649, 73)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(78, 13)
-        Me.Label3.TabIndex = 159
-        Me.Label3.Text = "LITROS MAX.:"
-        '
-        'chkPedirKilometros
-        '
-        Me.chkPedirKilometros.AutoSize = True
-        Me.chkPedirKilometros.Location = New System.Drawing.Point(606, 181)
-        Me.chkPedirKilometros.Name = "chkPedirKilometros"
-        Me.chkPedirKilometros.Size = New System.Drawing.Size(124, 17)
-        Me.chkPedirKilometros.TabIndex = 157
-        Me.chkPedirKilometros.Text = "Pedir Kms obligatorio"
-        Me.chkPedirKilometros.UseVisualStyleBackColor = True
-        '
-        'cmdNuevoVehiculos
-        '
-        Me.cmdNuevoVehiculos.BackColor = System.Drawing.Color.LightGreen
-        Me.cmdNuevoVehiculos.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdNuevoVehiculos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdNuevoVehiculos.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdNuevoVehiculos.Location = New System.Drawing.Point(568, 34)
-        Me.cmdNuevoVehiculos.Name = "cmdNuevoVehiculos"
-        Me.cmdNuevoVehiculos.Size = New System.Drawing.Size(78, 20)
-        Me.cmdNuevoVehiculos.TabIndex = 156
-        Me.cmdNuevoVehiculos.Text = "<--- nuevo"
-        Me.cmdNuevoVehiculos.UseVisualStyleBackColor = False
-        '
-        'txtIdxVehiculo
-        '
-        Me.txtIdxVehiculo.Enabled = False
-        Me.txtIdxVehiculo.Location = New System.Drawing.Point(516, 34)
-        Me.txtIdxVehiculo.Name = "txtIdxVehiculo"
-        Me.txtIdxVehiculo.Size = New System.Drawing.Size(46, 20)
-        Me.txtIdxVehiculo.TabIndex = 154
-        Me.txtIdxVehiculo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(513, 18)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(25, 13)
-        Me.Label8.TabIndex = 155
-        Me.Label8.Text = "IDX"
-        '
-        'txtDesMatricula
-        '
-        Me.txtDesMatricula.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtDesMatricula.Location = New System.Drawing.Point(516, 137)
-        Me.txtDesMatricula.MaxLength = 50
-        Me.txtDesMatricula.Name = "txtDesMatricula"
-        Me.txtDesMatricula.Size = New System.Drawing.Size(232, 20)
-        Me.txtDesMatricula.TabIndex = 151
-        '
-        'txtMatricula
-        '
-        Me.txtMatricula.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtMatricula.Location = New System.Drawing.Point(516, 89)
-        Me.txtMatricula.MaxLength = 30
-        Me.txtMatricula.Name = "txtMatricula"
-        Me.txtMatricula.Size = New System.Drawing.Size(130, 20)
-        Me.txtMatricula.TabIndex = 149
-        '
-        'chkMatriculaActiva
-        '
-        Me.chkMatriculaActiva.AutoSize = True
-        Me.chkMatriculaActiva.Location = New System.Drawing.Point(516, 181)
-        Me.chkMatriculaActiva.Name = "chkMatriculaActiva"
-        Me.chkMatriculaActiva.Size = New System.Drawing.Size(68, 17)
-        Me.chkMatriculaActiva.TabIndex = 153
-        Me.chkMatriculaActiva.Text = "Activado"
-        Me.chkMatriculaActiva.UseVisualStyleBackColor = True
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(513, 121)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(83, 13)
-        Me.Label2.TabIndex = 152
-        Me.Label2.Text = "DESCRIPCION:"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(513, 73)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(72, 13)
-        Me.Label5.TabIndex = 150
-        Me.Label5.Text = "MATRICULA:"
-        '
-        'cmdGrabaVehiculos
-        '
-        Me.cmdGrabaVehiculos.BackColor = System.Drawing.Color.Gray
-        Me.cmdGrabaVehiculos.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdGrabaVehiculos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdGrabaVehiculos.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdGrabaVehiculos.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.cmdGrabaVehiculos.Location = New System.Drawing.Point(513, 219)
-        Me.cmdGrabaVehiculos.Name = "cmdGrabaVehiculos"
-        Me.cmdGrabaVehiculos.Size = New System.Drawing.Size(104, 30)
-        Me.cmdGrabaVehiculos.TabIndex = 148
-        Me.cmdGrabaVehiculos.Text = "GRABAR"
-        Me.cmdGrabaVehiculos.UseVisualStyleBackColor = False
-        '
-        'lstVehiculos
-        '
-        Me.lstVehiculos.BackColor = System.Drawing.SystemColors.HighlightText
-        Me.lstVehiculos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lstVehiculos.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader5, Me.ColumnHeader6, Me.ColumnHeader7, Me.ColumnHeader10, Me.ColumnHeader2, Me.ColumnHeader12})
-        Me.lstVehiculos.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lstVehiculos.FullRowSelect = True
-        Me.lstVehiculos.GridLines = True
-        Me.lstVehiculos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
-        Me.lstVehiculos.HideSelection = False
-        Me.lstVehiculos.Location = New System.Drawing.Point(6, 19)
-        Me.lstVehiculos.MultiSelect = False
-        Me.lstVehiculos.Name = "lstVehiculos"
-        Me.lstVehiculos.Size = New System.Drawing.Size(501, 230)
-        Me.lstVehiculos.TabIndex = 147
-        Me.lstVehiculos.UseCompatibleStateImageBehavior = False
-        Me.lstVehiculos.View = System.Windows.Forms.View.Details
-        '
-        'ColumnHeader5
-        '
-        Me.ColumnHeader5.Width = 1
-        '
-        'ColumnHeader6
-        '
-        Me.ColumnHeader6.Text = "MATRI."
-        Me.ColumnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ColumnHeader6.Width = 70
-        '
-        'ColumnHeader7
-        '
-        Me.ColumnHeader7.Text = "DESCRIPCION"
-        Me.ColumnHeader7.Width = 285
-        '
-        'ColumnHeader10
-        '
-        Me.ColumnHeader10.Text = "*KMS"
-        Me.ColumnHeader10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ColumnHeader10.Width = 40
-        '
-        'ColumnHeader2
-        '
-        Me.ColumnHeader2.Text = "MAX"
-        Me.ColumnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.ColumnHeader2.Width = 40
-        '
-        'ColumnHeader12
-        '
-        Me.ColumnHeader12.Text = "ACT."
-        Me.ColumnHeader12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.ColumnHeader12.Width = 40
-        '
         'grdLineas
         '
         Me.grdLineas.BackColorBkg = System.Drawing.SystemColors.ControlLightLight
@@ -436,7 +234,7 @@ Partial Class frmRespotajes
         Me.grdLineas.ScrollBars = FlexCell.Grid.ScrollBarsEnum.Vertical
         Me.grdLineas.SelectionBorderColor = System.Drawing.Color.Gray
         Me.grdLineas.SelectionMode = FlexCell.Grid.SelectionModeEnum.ByRow
-        Me.grdLineas.Size = New System.Drawing.Size(766, 318)
+        Me.grdLineas.Size = New System.Drawing.Size(766, 584)
         Me.grdLineas.TabIndex = 147
         Me.grdLineas.TabStop = False
         Me.grdLineas.UncheckedImage = CType(resources.GetObject("grdLineas.UncheckedImage"), System.Drawing.Bitmap)
@@ -481,6 +279,7 @@ Partial Class frmRespotajes
         '
         Me.Panel1.BackColor = System.Drawing.SystemColors.Control
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Controls.Add(Me.cmdHistorial)
         Me.Panel1.Controls.Add(Me.cmdSaldos)
         Me.Panel1.Controls.Add(Me.cmdGasolineros)
@@ -492,6 +291,139 @@ Partial Class frmRespotajes
         Me.Panel1.Size = New System.Drawing.Size(204, 647)
         Me.Panel1.TabIndex = 33
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.lblHasta)
+        Me.GroupBox1.Controls.Add(Me.Panel3)
+        Me.GroupBox1.Controls.Add(Me.cmdRefrescaContenido)
+        Me.GroupBox1.Controls.Add(Me.Label41)
+        Me.GroupBox1.Controls.Add(Me.Label40)
+        Me.GroupBox1.Controls.Add(Me.Label39)
+        Me.GroupBox1.Controls.Add(Me.lblPorContenido)
+        Me.GroupBox1.Controls.Add(Me.Label38)
+        Me.GroupBox1.Location = New System.Drawing.Point(3, 278)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(196, 307)
+        Me.GroupBox1.TabIndex = 39
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = " ESTADO DEPOSITO "
+        '
+        'lblHasta
+        '
+        Me.lblHasta.BackColor = System.Drawing.Color.Moccasin
+        Me.lblHasta.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHasta.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lblHasta.Location = New System.Drawing.Point(9, 273)
+        Me.lblHasta.Name = "lblHasta"
+        Me.lblHasta.Size = New System.Drawing.Size(178, 24)
+        Me.lblHasta.TabIndex = 143
+        Me.lblHasta.Text = "- - -"
+        Me.lblHasta.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.SystemColors.Window
+        Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel3.Controls.Add(Me.lblBarraContenido)
+        Me.Panel3.Location = New System.Drawing.Point(54, 51)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(110, 211)
+        Me.Panel3.TabIndex = 142
+        '
+        'lblBarraContenido
+        '
+        Me.lblBarraContenido.BackColor = System.Drawing.Color.IndianRed
+        Me.lblBarraContenido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblBarraContenido.Location = New System.Drawing.Point(-7, 0)
+        Me.lblBarraContenido.Name = "lblBarraContenido"
+        Me.lblBarraContenido.Size = New System.Drawing.Size(121, 209)
+        Me.lblBarraContenido.TabIndex = 140
+        Me.lblBarraContenido.Visible = False
+        '
+        'cmdRefrescaContenido
+        '
+        Me.cmdRefrescaContenido.BackColor = System.Drawing.Color.LightBlue
+        Me.cmdRefrescaContenido.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdRefrescaContenido.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdRefrescaContenido.Location = New System.Drawing.Point(6, 16)
+        Me.cmdRefrescaContenido.Name = "cmdRefrescaContenido"
+        Me.cmdRefrescaContenido.Size = New System.Drawing.Size(23, 21)
+        Me.cmdRefrescaContenido.TabIndex = 141
+        Me.cmdRefrescaContenido.Text = "R"
+        Me.cmdRefrescaContenido.UseVisualStyleBackColor = False
+        '
+        'Label41
+        '
+        Me.Label41.AutoSize = True
+        Me.Label41.BackColor = System.Drawing.Color.Moccasin
+        Me.Label41.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label41.Location = New System.Drawing.Point(15, 146)
+        Me.Label41.Name = "Label41"
+        Me.Label41.Size = New System.Drawing.Size(33, 13)
+        Me.Label41.TabIndex = 138
+        Me.Label41.Text = "0.5 -"
+        Me.Label41.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label40
+        '
+        Me.Label40.AutoSize = True
+        Me.Label40.BackColor = System.Drawing.Color.Moccasin
+        Me.Label40.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label40.Location = New System.Drawing.Point(26, 252)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(22, 13)
+        Me.Label40.TabIndex = 137
+        Me.Label40.Text = "0 -"
+        Me.Label40.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label39
+        '
+        Me.Label39.AutoSize = True
+        Me.Label39.BackColor = System.Drawing.Color.Moccasin
+        Me.Label39.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label39.Location = New System.Drawing.Point(26, 45)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(22, 13)
+        Me.Label39.TabIndex = 136
+        Me.Label39.Text = "1 -"
+        Me.Label39.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lblPorContenido
+        '
+        Me.lblPorContenido.BackColor = System.Drawing.Color.Moccasin
+        Me.lblPorContenido.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPorContenido.Location = New System.Drawing.Point(50, 25)
+        Me.lblPorContenido.Name = "lblPorContenido"
+        Me.lblPorContenido.Size = New System.Drawing.Size(121, 23)
+        Me.lblPorContenido.TabIndex = 135
+        Me.lblPorContenido.Text = "- - -"
+        Me.lblPorContenido.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label38
+        '
+        Me.Label38.BackColor = System.Drawing.Color.Moccasin
+        Me.Label38.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label38.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Label38.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label38.ForeColor = System.Drawing.Color.Black
+        Me.Label38.Location = New System.Drawing.Point(6, 16)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(184, 282)
+        Me.Label38.TabIndex = 140
+        Me.Label38.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'cmdHistorial
+        '
+        Me.cmdHistorial.BackColor = System.Drawing.Color.LightBlue
+        Me.cmdHistorial.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdHistorial.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdHistorial.Location = New System.Drawing.Point(3, 168)
+        Me.cmdHistorial.Name = "cmdHistorial"
+        Me.cmdHistorial.Size = New System.Drawing.Size(196, 49)
+        Me.cmdHistorial.TabIndex = 38
+        Me.cmdHistorial.Text = "HISTORIAL VEHICULO"
+        Me.cmdHistorial.UseVisualStyleBackColor = False
+        '
         'cmdSaldos
         '
         Me.cmdSaldos.BackColor = System.Drawing.Color.LightBlue
@@ -501,9 +433,8 @@ Partial Class frmRespotajes
         Me.cmdSaldos.Name = "cmdSaldos"
         Me.cmdSaldos.Size = New System.Drawing.Size(196, 49)
         Me.cmdSaldos.TabIndex = 37
-        Me.cmdSaldos.Text = "SALDO SURTIDOR"
+        Me.cmdSaldos.Text = "DATOS SURTIDOR"
         Me.cmdSaldos.UseVisualStyleBackColor = False
-        Me.cmdSaldos.Visible = False
         '
         'cmdVehiculos
         '
@@ -545,23 +476,11 @@ Partial Class frmRespotajes
         '
         Me.Timer1.Interval = 200
         '
-        'cmdHistorial
-        '
-        Me.cmdHistorial.BackColor = System.Drawing.Color.LightBlue
-        Me.cmdHistorial.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdHistorial.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdHistorial.Location = New System.Drawing.Point(3, 168)
-        Me.cmdHistorial.Name = "cmdHistorial"
-        Me.cmdHistorial.Size = New System.Drawing.Size(196, 49)
-        Me.cmdHistorial.TabIndex = 38
-        Me.cmdHistorial.Text = "HISTORIAL VEHICULO"
-        Me.cmdHistorial.UseVisualStyleBackColor = False
-        '
         'frmRespotajes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 730)
+        Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.ControlBox = False
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
@@ -580,9 +499,10 @@ Partial Class frmRespotajes
         Me.Text = "Control de Repostajes"
         Me.Panel2.ResumeLayout(False)
         Me.grpGasolineros.ResumeLayout(False)
-        Me.grpVehiculos.ResumeLayout(False)
-        Me.grpVehiculos.PerformLayout()
         Me.Panel1.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -599,37 +519,27 @@ Partial Class frmRespotajes
     Friend WithEvents Timer1 As Timer
     Friend WithEvents grdLineas As FlexCell.Grid
     Friend WithEvents grpGasolineros As GroupBox
-    Friend WithEvents grpVehiculos As GroupBox
-    Friend WithEvents lstVehiculos As ListView
-    Friend WithEvents ColumnHeader5 As ColumnHeader
-    Friend WithEvents ColumnHeader6 As ColumnHeader
-    Friend WithEvents ColumnHeader7 As ColumnHeader
-    Friend WithEvents cmdGrabaVehiculos As Button
-    Friend WithEvents Label5 As Label
-    Friend WithEvents txtMatricula As TextBox
-    Friend WithEvents chkMatriculaActiva As CheckBox
-    Friend WithEvents Label2 As Label
-    Friend WithEvents txtDesMatricula As TextBox
     Friend WithEvents lstGasolineros As ListView
     Friend WithEvents ColumnHeader4 As ColumnHeader
     Friend WithEvents ColumnHeader8 As ColumnHeader
-    Friend WithEvents cmdNuevoVehiculos As Button
-    Friend WithEvents txtIdxVehiculo As TextBox
-    Friend WithEvents Label8 As Label
-    Friend WithEvents chkPedirKilometros As CheckBox
-    Friend WithEvents ColumnHeader10 As ColumnHeader
     Friend WithEvents cmdGrabaGasolinero As Button
-    Friend WithEvents ColumnHeader12 As ColumnHeader
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents cmdBorrarGasolinero As Button
     Friend WithEvents cmdRefresca As Button
     Friend WithEvents lblContador As Label
     Friend WithEvents lblTextoContador As Label
     Friend WithEvents cmdSaldos As Button
-    Friend WithEvents txtLitrosMaximos As TextBox
-    Friend WithEvents Label3 As Label
-    Friend WithEvents ColumnHeader2 As ColumnHeader
     Friend WithEvents ColumnHeader3 As ColumnHeader
     Friend WithEvents Label4 As Label
     Friend WithEvents cmdHistorial As Button
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Label41 As Label
+    Friend WithEvents Label40 As Label
+    Friend WithEvents Label39 As Label
+    Friend WithEvents lblPorContenido As Label
+    Friend WithEvents Label38 As Label
+    Friend WithEvents cmdRefrescaContenido As Button
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents lblBarraContenido As Label
+    Friend WithEvents lblHasta As Label
 End Class

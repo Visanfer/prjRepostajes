@@ -17,6 +17,7 @@ Public Class clsGasolinero
     Public Sub mrRecuperaDatos()
 
         Dim lsSql As String = "select * from repostajes_gasolineros where idusuario = " & mnIdUsuario
+
         moDatos = New clsControlBD().mfoRecuperaDatos(False, lsSql, "repostajes")
 
         mbEsNuevo = True
@@ -30,6 +31,20 @@ Public Class clsGasolinero
     Public Sub mrCargaDatos(ByVal loRecord As DataRow)
         mnIdUsuario = mfnInteger(loRecord("idusuario") & "")
         mnIdChofer = mfnInteger(loRecord("idchofer") & "")
+    End Sub
+
+    Public Sub mrRecuperaUsuario()
+
+        Dim lsSql As String = "select * from repostajes_gasolineros where idchofer = " & mnIdChofer
+
+        moDatos = New clsControlBD().mfoRecuperaDatos(False, lsSql, "repostajes")
+
+        mbEsNuevo = True
+        For Each loRow As DataRow In moDatos.Rows
+            mrCargaDatos(loRow)
+            mbEsNuevo = False
+        Next
+
     End Sub
 
     Public Sub mrGrabaDatos()
