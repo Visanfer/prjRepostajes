@@ -223,7 +223,7 @@ Partial Class frmRespotajes
         'grdLineas
         '
         Me.grdLineas.BackColorBkg = System.Drawing.SystemColors.ControlLightLight
-        Me.grdLineas.BorderStyle = FlexCell.Grid.BorderStyleEnum.FixedSingle
+        Me.grdLineas.BorderStyle = FlexCell.BorderStyleEnum.FixedSingle
         Me.grdLineas.CheckedImage = CType(resources.GetObject("grdLineas.CheckedImage"), System.Drawing.Bitmap)
         Me.grdLineas.Cols = 8
         Me.grdLineas.ExtendLastCol = True
@@ -231,9 +231,9 @@ Partial Class frmRespotajes
         Me.grdLineas.MultiSelect = False
         Me.grdLineas.Name = "grdLineas"
         Me.grdLineas.Rows = 2
-        Me.grdLineas.ScrollBars = FlexCell.Grid.ScrollBarsEnum.Vertical
+        Me.grdLineas.ScrollBars = FlexCell.ScrollBarsEnum.Vertical
         Me.grdLineas.SelectionBorderColor = System.Drawing.Color.Gray
-        Me.grdLineas.SelectionMode = FlexCell.Grid.SelectionModeEnum.ByRow
+        Me.grdLineas.SelectionMode = FlexCell.SelectionModeEnum.ByRow
         Me.grdLineas.Size = New System.Drawing.Size(766, 584)
         Me.grdLineas.TabIndex = 147
         Me.grdLineas.TabStop = False

@@ -37,15 +37,15 @@ Public Class frmConsumos
         grdLineas.DisplayRowNumber = False
         grdLineas.Cols = 6
 
-        'grdLineas.EnterKeyMoveTo = FlexCell.Grid.MoveToEnum.NextRow
-        grdLineas.SelectionMode = FlexCell.Grid.SelectionModeEnum.ByRow
+        'grdLineas.EnterKeyMoveTo = FlexCell.MoveToEnum.NextRow
+        grdLineas.SelectionMode = FlexCell.SelectionModeEnum.ByRow
         grdLineas.AllowUserSort = False
         grdLineas.DisplayFocusRect = False
         grdLineas.AllowUserResizing = False
         grdLineas.ExtendLastCol = True
-        grdLineas.FixedRowColStyle = FlexCell.Grid.FixedRowColStyleEnum.Flat
-        grdLineas.BorderStyle = FlexCell.Grid.BorderStyleEnum.FixedSingle
-        grdLineas.DateFormat = FlexCell.Grid.DateFormatEnum.DMY
+        grdLineas.FixedRowColStyle = FlexCell.FixedRowColStyleEnum.Flat
+        grdLineas.BorderStyle = FlexCell.BorderStyleEnum.FixedSingle
+        grdLineas.DateFormat = FlexCell.DateFormatEnum.DMY
         grdLineas.BackColorSel = Color.Navy
         grdLineas.BackColorFixed = Color.FromKnownColor(KnownColor.ControlLight)
         grdLineas.CellBorderColorFixed = Color.Black
@@ -67,12 +67,12 @@ Public Class frmConsumos
         grdLineas.Column(4).Width = 100
         grdLineas.Column(5).Width = 100
 
-        grdLineas.Column(0).Alignment = FlexCell.Grid.AlignmentEnum.LeftCenter
-        grdLineas.Column(1).Alignment = FlexCell.Grid.AlignmentEnum.LeftCenter
-        grdLineas.Column(2).Alignment = FlexCell.Grid.AlignmentEnum.LeftCenter
-        grdLineas.Column(3).Alignment = FlexCell.Grid.AlignmentEnum.RightCenter
-        grdLineas.Column(4).Alignment = FlexCell.Grid.AlignmentEnum.RightCenter
-        grdLineas.Column(5).Alignment = FlexCell.Grid.AlignmentEnum.RightCenter
+        grdLineas.Column(0).Alignment = FlexCell.AlignmentEnum.LeftCenter
+        grdLineas.Column(1).Alignment = FlexCell.AlignmentEnum.LeftCenter
+        grdLineas.Column(2).Alignment = FlexCell.AlignmentEnum.LeftCenter
+        grdLineas.Column(3).Alignment = FlexCell.AlignmentEnum.RightCenter
+        grdLineas.Column(4).Alignment = FlexCell.AlignmentEnum.RightCenter
+        grdLineas.Column(5).Alignment = FlexCell.AlignmentEnum.RightCenter
 
         grdLineas.Visible = True
 
@@ -138,4 +138,14 @@ Public Class frmConsumos
 
     End Sub
 
+    Private Sub grdLineas_GotFocus(sender As Object, e As EventArgs) Handles grdLineas.GotFocus
+        Dim loGrid As FlexCell.Grid = sender
+        If loGrid.SelectionMode = FlexCell.SelectionModeEnum.ByRow Then
+            loGrid.Locked = True
+            loGrid.BackColorActiveCellSel = loGrid.BackColorSel
+        Else
+            loGrid.Locked = False
+            loGrid.BackColorActiveCellSel = Color.White
+        End If
+    End Sub
 End Class
