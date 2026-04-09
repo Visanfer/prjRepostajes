@@ -11,6 +11,9 @@ Public Class frmHistorico
     Dim mbPrimeraVez As Boolean = True
 
     Public Sub mrCargar()
+        dtpDesde.Value = Date.Now.AddYears(-1)
+        dtpHasta.Value = Date.Now
+
         mrPreparaGrid()
         Me.ShowDialog()
     End Sub
@@ -74,8 +77,8 @@ Public Class frmHistorico
 
         lblTitulo.Text = loVehiculo.msMatricula & " - " & loVehiculo.msDescripcion
 
-        Dim ldDesde As Date = DateAdd(DateInterval.Year, -10, Now)
-        Dim ldHasta As Date = Now
+        Dim ldDesde As Date = dtpDesde.Value
+        Dim ldHasta As Date = dtpHasta.Value
 
         If msDesde.Length > 0 Then
             ldDesde = CDate(msDesde)
@@ -163,7 +166,7 @@ Public Class frmHistorico
             Case Keys.Escape
                 Me.Close()
             Case Keys.F6
-                mrBorraApunte
+                mrBorraApunte()
         End Select
 
     End Sub
@@ -229,4 +232,11 @@ Public Class frmHistorico
             loGrid.BackColorActiveCellSel = Color.White
         End If
     End Sub
+
+    Private Sub cmdCargar_Click(sender As Object, e As EventArgs) Handles cmdCargar.Click
+        msDesde = ""
+        msHasta = ""
+        mrCargaDatos()
+    End Sub
+
 End Class

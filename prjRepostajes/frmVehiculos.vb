@@ -25,6 +25,8 @@ Public Class frmVehiculos
         Else
             lblF1.Visible = False
             lblFiltro.Top = 10
+            lblF2.Top = 10
+            lblTipoBusqueda.Top = 10
             grdLineas.Top = 30
             grdLineas.Height = 630
         End If
@@ -50,7 +52,13 @@ Public Class frmVehiculos
 
         Dim lsSql As String = ""
 
-        If lblFiltro.Text.Length > 0 Then lsSql = lsSql & " and matricula like '%" & lblFiltro.Text & "%'"
+        If lblFiltro.Text.Length > 0 Then
+            If lblTipoBusqueda.Tag.Equals("D") Then
+                lsSql = lsSql & " and descripcion like '%" & lblFiltro.Text & "%'"
+            Else
+                lsSql = lsSql & " and matricula like '%" & lblFiltro.Text & "%'"
+            End If
+        End If
         If Not chkAnulados.Checked Then lsSql = lsSql & " and activo = 1"
         If Not chkExternos.Checked Then lsSql = lsSql & " and externo = 0"
 
@@ -194,7 +202,14 @@ Public Class frmVehiculos
                 End If
             Case Keys.F1
                 If mbModoEditor Then mrNuevoRegistro()
-
+            Case Keys.F2
+                If lblTipoBusqueda.Tag.Equals("D") Then
+                    lblTipoBusqueda.Text = "- MATRICULA -"
+                    lblTipoBusqueda.Tag = "M"
+                Else
+                    lblTipoBusqueda.Text = "- DESCRIPCION -"
+                    lblTipoBusqueda.Tag = "D"
+                End If
         End Select
 
     End Sub

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmVehiculos
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,9 +20,8 @@ Partial Class frmVehiculos
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmVehiculos))
         Me.panContenedor = New System.Windows.Forms.Panel()
         Me.panCentro = New System.Windows.Forms.Panel()
         Me.lblFiltro = New System.Windows.Forms.Label()
@@ -41,6 +40,8 @@ Partial Class frmVehiculos
         Me.lblSalir = New System.Windows.Forms.Label()
         Me.panTitulo = New System.Windows.Forms.Panel()
         Me.lblTitulo = New System.Windows.Forms.Label()
+        Me.lblTipoBusqueda = New System.Windows.Forms.Label()
+        Me.lblF2 = New System.Windows.Forms.Label()
         Me.panContenedor.SuspendLayout()
         Me.panCentro.SuspendLayout()
         Me.panPie.SuspendLayout()
@@ -63,6 +64,8 @@ Partial Class frmVehiculos
         'panCentro
         '
         Me.panCentro.BackColor = System.Drawing.SystemColors.Control
+        Me.panCentro.Controls.Add(Me.lblF2)
+        Me.panCentro.Controls.Add(Me.lblTipoBusqueda)
         Me.panCentro.Controls.Add(Me.lblFiltro)
         Me.panCentro.Controls.Add(Me.grdLineas)
         Me.panCentro.Controls.Add(Me.chkOtros)
@@ -85,9 +88,9 @@ Partial Class frmVehiculos
         Me.lblFiltro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblFiltro.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold)
         Me.lblFiltro.ForeColor = System.Drawing.Color.Black
-        Me.lblFiltro.Location = New System.Drawing.Point(10, 71)
+        Me.lblFiltro.Location = New System.Drawing.Point(149, 71)
         Me.lblFiltro.Name = "lblFiltro"
-        Me.lblFiltro.Size = New System.Drawing.Size(791, 20)
+        Me.lblFiltro.Size = New System.Drawing.Size(652, 20)
         Me.lblFiltro.TabIndex = 153
         '
         'grdLineas
@@ -97,11 +100,9 @@ Partial Class frmVehiculos
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grdLineas.BackColorBkg = System.Drawing.SystemColors.ControlLightLight
         Me.grdLineas.BorderStyle = FlexCell.BorderStyleEnum.FixedSingle
-        Me.grdLineas.CheckedImage = CType(resources.GetObject("grdLineas.CheckedImage"), System.Drawing.Bitmap)
         Me.grdLineas.Cols = 8
         Me.grdLineas.DefaultFont = New System.Drawing.Font("Tahoma", 9.0!)
         Me.grdLineas.ExtendLastCol = True
-        Me.grdLineas.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.grdLineas.Location = New System.Drawing.Point(10, 91)
         Me.grdLineas.MultiSelect = False
         Me.grdLineas.Name = "grdLineas"
@@ -112,7 +113,6 @@ Partial Class frmVehiculos
         Me.grdLineas.Size = New System.Drawing.Size(791, 575)
         Me.grdLineas.TabIndex = 152
         Me.grdLineas.TabStop = False
-        Me.grdLineas.UncheckedImage = CType(resources.GetObject("grdLineas.UncheckedImage"), System.Drawing.Bitmap)
         '
         'chkOtros
         '
@@ -260,6 +260,33 @@ Partial Class frmVehiculos
         Me.lblTitulo.Text = "BUSCADOR DE VEHICULOS"
         Me.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'lblTipoBusqueda
+        '
+        Me.lblTipoBusqueda.BackColor = System.Drawing.Color.LightYellow
+        Me.lblTipoBusqueda.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblTipoBusqueda.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.lblTipoBusqueda.ForeColor = System.Drawing.Color.Black
+        Me.lblTipoBusqueda.Location = New System.Drawing.Point(42, 71)
+        Me.lblTipoBusqueda.Name = "lblTipoBusqueda"
+        Me.lblTipoBusqueda.Size = New System.Drawing.Size(107, 20)
+        Me.lblTipoBusqueda.TabIndex = 154
+        Me.lblTipoBusqueda.Tag = "M"
+        Me.lblTipoBusqueda.Text = "- MATRICULA -"
+        Me.lblTipoBusqueda.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblF2
+        '
+        Me.lblF2.BackColor = System.Drawing.Color.LightGoldenrodYellow
+        Me.lblF2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblF2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.lblF2.ForeColor = System.Drawing.Color.Black
+        Me.lblF2.Location = New System.Drawing.Point(10, 71)
+        Me.lblF2.Name = "lblF2"
+        Me.lblF2.Size = New System.Drawing.Size(32, 20)
+        Me.lblF2.TabIndex = 155
+        Me.lblF2.Text = "F2"
+        Me.lblF2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'frmVehiculos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -304,4 +331,6 @@ Partial Class frmVehiculos
     Friend WithEvents chkOtros As CheckBox
     Friend WithEvents grdLineas As FlexCell.Grid
     Friend WithEvents lblFiltro As Label
+    Friend WithEvents lblTipoBusqueda As Label
+    Friend WithEvents lblF2 As Label
 End Class
